@@ -33,35 +33,54 @@
         android:layout_marginTop="10dp"
         />
 
-    <Button
-        android:id="@+id/AddTrainee"
-        android:layout_width="wrap_content"
+    <!--actions on Trainee-->
+    <GridLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/selectTrainee"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="10dp"
-        android:text="Add User"
-        style="@style/LeopardButton"
-        android:onClick="addingNewTrainee"
-        />
+        android:id="@+id/actionsOnTrainee"
+        >
+        <ToggleButton
+            android:id="@+id/AddTrainee"
+            android:layout_width="wrap_content"
+            android:layout_below="@+id/selectTrainee"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_column="0"
+            android:textOn="Add User"
+            android:textOff="Add User"
+            style="@style/LeopardButton"
+            android:onClick="addingNewTrainee"
+            />
 
-    <Button
-        android:id="@+id/DeleteTrainee"
-        android:layout_width="wrap_content"
-        android:text="Remove User"
-        style="@style/LeopardButton"
-        android:layout_below="@+id/selectTrainee"
-        android:layout_marginTop="10dp"
-        android:layout_centerHorizontal="true"
-        android:onClick="deleteTrainee"/>
+        <ToggleButton
+            android:id="@+id/DeleteTrainee"
+            android:layout_width="wrap_content"
+            android:textOn="Remove User"
+            android:textOff="Remove User"
+            style="@style/LeopardButton"
+            android:layout_column="1"
+            android:layout_below="@+id/selectTrainee"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_centerHorizontal="true"
+            android:onClick="deleteTrainee"/>
 
-    <Button
-        android:id="@+id/EditTrainee"
-        android:layout_width="wrap_content"
-        android:text="Edit User"
-        style="@style/LeopardButton"
-        android:layout_below="@+id/selectTrainee"
-        android:layout_marginTop="10dp"
-        android:layout_alignParentEnd="true" />
+        <ToggleButton
+            android:id="@+id/EditTrainee"
+            android:layout_width="wrap_content"
+            android:textOn="Edit User"
+            android:textOff="Edit User"
+            android:layout_column="2"
+            style="@style/LeopardButton"
+            android:layout_below="@+id/selectTrainee"
+            android:layout_marginTop="10dp"
+            android:layout_alignParentEnd="true"
+            android:onClick="editingTrainee"
+            />
+
+    </GridLayout>
 
     <!--Selecting user and continue using app-->
     <Button
@@ -71,9 +90,10 @@
         android:textSize="20sp"
         android:layout_height="50dp"
         style="@style/LeopardButton"
-        android:layout_below="@+id/AddTrainee"
+        android:layout_below="@+id/actionsOnTrainee"
         android:layout_marginTop="30dp"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:onClick="enterLeopardHome"/>
 
 
     <!--Layout that appears when user wants to add new Trainee-->
@@ -82,17 +102,17 @@
         android:layout_width="fill_parent"
         android:layout_height="match_parent"
         android:layout_alignParentBottom="true"
-        android:layout_below="@+id/AddTrainee"
+        android:layout_below="@+id/actionsOnTrainee"
 
         android:visibility="invisible">
         <!--Choose Username-->
         <TextView
             android:id="@+id/newTraineeName"
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_column="0"
-            android:layout_gravity="fill"
+            android:layout_columnSpan="4"
             android:layout_marginBottom="10dp"
             android:layout_marginTop="40dp"
             android:layout_row="0"
@@ -104,6 +124,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_column="0"
+            android:layout_columnSpan="4"
             android:layout_row="1"
             android:ems="10"
             android:hint="Enter your username here"
@@ -116,7 +137,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_column="0"
-            android:layout_gravity="fill"
+            android:layout_columnSpan="4"
             android:layout_marginBottom="10dp"
             android:layout_marginTop="10dp"
             android:layout_row="2"
@@ -128,6 +149,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_column="0"
+            android:layout_columnSpan="4"
             android:layout_row="3"
             android:ems="10"
             android:hint="Enter your email here"
@@ -138,10 +160,20 @@
             style="@style/LeopardButton"
             android:layout_width="wrap_content"
             android:layout_column="0"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             android:layout_row="4"
             android:onClick="addNewTraineeSubmit"
             android:text="Sign Up" />
+
+        <Button
+            android:id="@+id/AddNewTraineeCancel"
+            style="@style/LeopardButton"
+            android:layout_width="wrap_content"
+            android:layout_column="3"
+            android:layout_marginTop="20dp"
+            android:layout_row="4"
+            android:onClick="cancelAddTrainee"
+            android:text="Cancel" />
 
     </GridLayout>
 
@@ -150,8 +182,7 @@
         android:id="@+id/deletingTraineeLayout"
         android:layout_width="fill_parent"
         android:layout_height="match_parent"
-
-        android:layout_below="@+id/AddTrainee"
+        android:layout_below="@+id/actionsOnTrainee"
         android:visibility="invisible">
         <!--Choose Username-->
         <TextView
@@ -178,7 +209,6 @@
             android:layout_column="0"
             android:layout_marginTop="10dp"
             android:layout_row="1"
-
             android:onClick="deleteTraineeSubmit"
             android:text="Delete" />
         <Button
@@ -188,12 +218,90 @@
             android:layout_column="2"
             android:layout_marginTop="10dp"
             android:layout_row="1"
-
             android:onClick="cancelDelete"
             android:text="Cancel" />
 
 
     </GridLayout>
+
+    <!--Layout that appears when user wants to Edit Trainee-->
+    <GridLayout
+        android:id="@+id/editExistingTrainee"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/actionsOnTrainee"
+        android:visibility="invisible">
+        <!--Edit Username-->
+        <TextView
+            android:id="@+id/editTraineeNameText"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_column="0"
+            android:layout_columnSpan="4"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="40dp"
+            android:layout_row="0"
+            android:text="Edit username:" />
+
+        <EditText
+            android:id="@+id/editTraineeName"
+            style="@style/LeopardEditTextBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="0"
+            android:layout_columnSpan="4"
+            android:layout_row="1"
+            android:ems="10"
+            android:inputType="textPersonName" />
+
+        <!--Enter Email-->
+        <TextView
+            android:id="@+id/editTraineeEmailText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_column="0"
+            android:layout_columnSpan="4"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_row="2"
+            android:text="Edit your email:" />
+
+        <EditText
+            android:id="@+id/editTraineeEmail"
+            style="@style/LeopardEditTextBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="0"
+            android:layout_columnSpan="4"
+            android:layout_row="3"
+            android:ems="10"
+            android:inputType="textPersonName" />
+
+        <Button
+            android:id="@+id/editTraineeSubmit"
+            style="@style/LeopardButton"
+            android:layout_width="wrap_content"
+            android:layout_column="0"
+            android:layout_marginTop="20dp"
+            android:layout_row="4"
+            android:onClick="editTraineeSubmit"
+            android:text="Sign Up" />
+
+        <Button
+            android:id="@+id/editTraineeCancel"
+            style="@style/LeopardButton"
+            android:layout_width="wrap_content"
+            android:layout_column="3"
+            android:layout_marginTop="20dp"
+            android:layout_row="4"
+            android:onClick="cancelEditTrainee"
+            android:text="Cancel" />
+
+    </GridLayout>
+
 
 
 

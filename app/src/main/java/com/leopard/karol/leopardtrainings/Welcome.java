@@ -25,6 +25,7 @@ import java.util.ArrayList;
  *
  *  Future updates:
  *  - add animations for better UI experience
+ *  - instead of using additional array of names use the array of trainees
  *
  * Design Patterns Used:
  *
@@ -39,8 +40,13 @@ public class Welcome extends AppCompatActivity implements Serializable{
     EditText enterNewTraineeName;
     EditText enterTraineeEmail;
     GridLayout deletingTraineeLayout;
+    GridLayout editExistingTrainee;
+    EditText editTraineeName;
+    EditText editTraineeEmail;
     ArrayList<String> names;
+    //ArrayList<Trainee> trainees;
     Button enterLeopard;
+    ArrayAdapter<String> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,34 +56,52 @@ public class Welcome extends AppCompatActivity implements Serializable{
         enterLeopard = (Button) findViewById(R.id.enterLeopard);
         addingNewTrainee = (GridLayout) findViewById(R.id.addingNewTrainee);
         deletingTraineeLayout = (GridLayout) findViewById(R.id.deletingTraineeLayout);
-        //addingNewTrainee.setVisibility(View.INVISIBLE);
-        databaseAccess = SingletonDBaccess.getInstance();
-
-        databaseAccess.readDB_onStartup(this);
-
+        editExistingTrainee = (GridLayout) findViewById(R.id.editExistingTrainee);
         selectTrainee = (Spinner) findViewById(R.id.selectTrainee);
+
+
+        databaseAccess = SingletonDBaccess.getInstance();
+        databaseAccess.readDB_onStartup(this);
         names = databaseAccess.getTraineesNames();
-        Log.i("Karol", "I'm going to read names  ");
-        for (String name: names){
-            Log.i("Karol", "Names are : " + name);
-        }
+
 
         // Create an ArrayAdapter using the string array and a default spinner layout
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, names);
+        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, names);
         // Specify the layout to use when the list of choices appears
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // Apply the adapter to the spinner
 
         selectTrainee.setAdapter(adapter);
+        //Log.i("Karol", "selected item position " + selectTrainee.getSelectedItemPosition());
     }
 
+    protected void onPause(){
+        super.onPause();
+
+        Log.i("Karol", "app paused");
+    }
+
+    protected void onStop(){
+        super.onStop();
+
+        Log.i("Karol", "app stopped");
+    }
+
+    //ACTIONS FOR ADDING NEW TRAINEE
     public void addingNewTrainee(View view) {
-        addingNewTrainee.setVisibility(View.VISIBLE);
-        enterLeopard.setVisibility(View.INVISIBLE);
+        if(addingNewTrainee.getVisibility() == View.INVISIBLE) {
+            addingNewTrainee.setVisibility(View.VISIBLE);
+            enterLeopard.setVisibility(View.INVISIBLE);
+        } else {
+            addingNewTrainee.setVisibility(View.INVISIBLE);
+            enterLeopard.setVisibility(View.VISIBLE);
+        }
+        deletingTraineeLayout.setVisibility(View.INVISIBLE);
+        editExistingTrainee.setVisibility(View.INVISIBLE);
+
     }
 
     public void addNewTraineeSubmit(View view) {
-        Log.i("Karol", "I'm in adding new trainee  ");
         //accessing Edit Boxes
         enterNewTraineeName = (EditText) findViewById(R.id.enterNewTraineeName);
         enterTraineeEmail = (EditText) findViewById(R.id.enterTraineeEmail);
@@ -89,7 +113,7 @@ public class Welcome extends AppCompatActivity implements Serializable{
         databaseAccess.setTrainees(currentTrainee);
         names.add(currentTrainee.getName());
         databaseAccess.saveFiles(this);
-
+        adapter.notifyDataSetChanged();
 
         //control messages
         makeToast("New user created with name " + currentTrainee.getName() + " and  the email " + currentTrainee.getEmail());
@@ -102,16 +126,24 @@ public class Welcome extends AppCompatActivity implements Serializable{
         enterLeopard.setVisibility(View.VISIBLE);
     }
 
-
-
-    public  void makeToast(String message){
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    public void cancelAddTrainee(View view) {
+        enterLeopard.setVisibility(View.VISIBLE);
+        addingNewTrainee.setVisibility(View.INVISIBLE);
     }
 
-    public void deleteTrainee(View view) {
 
-        enterLeopard.setVisibility(View.INVISIBLE);
-        deletingTraineeLayout.setVisibility(View.VISIBLE);
+
+    //ACTIONS FOR DELETING TRAINEE
+    public void deleteTrainee(View view) {
+        if(deletingTraineeLayout.getVisibility() == View.INVISIBLE) {
+            deletingTraineeLayout.setVisibility(View.VISIBLE);
+            enterLeopard.setVisibility(View.INVISIBLE);
+        } else {
+            deletingTraineeLayout.setVisibility(View.INVISIBLE);
+            enterLeopard.setVisibility(View.VISIBLE);
+        }
+        addingNewTrainee.setVisibility(View.INVISIBLE);
+        editExistingTrainee.setVisibility(View.INVISIBLE);
     }
 
     public void cancelDelete(View view) {
@@ -120,16 +152,57 @@ public class Welcome extends AppCompatActivity implements Serializable{
     }
 
     public void deleteTraineeSubmit(View view) {
-        Log.i("Karol", "I'm in delete user  ");
-        Trainee currentTrainee;
+        //getting the name of teh trainee to be deleted
+        String traineeNameToDeleted =  selectTrainee.getSelectedItem().toString();
 
-        selectTrainee.getSelectedItem();
-        Log.i("Karol", "Selected item is:  " + selectTrainee.getSelectedItem());
+        //removing the trainee from the list
+        databaseAccess.removeTrainee(traineeNameToDeleted);
+        //removing the trainee from the spinner and updating it
+        adapter.remove(traineeNameToDeleted);
+        adapter.notifyDataSetChanged();
+        //saving our app's data
         databaseAccess.saveFiles(this);
 
+        makeToast("User deleted name " + traineeNameToDeleted);
 
         //recover original view
         enterLeopard.setVisibility(View.VISIBLE);
         deletingTraineeLayout.setVisibility(View.INVISIBLE);
     }
+
+
+    //ACTIONS FOR DELETING TRAINEE
+    public void editingTrainee(View view) {
+        if(editExistingTrainee.getVisibility() == View.INVISIBLE) {
+            editExistingTrainee.setVisibility(View.VISIBLE);
+            enterLeopard.setVisibility(View.INVISIBLE);
+        } else {
+            editExistingTrainee.setVisibility(View.INVISIBLE);
+            enterLeopard.setVisibility(View.VISIBLE);
+        }
+        addingNewTrainee.setVisibility(View.INVISIBLE);
+        deletingTraineeLayout.setVisibility(View.INVISIBLE);
+    }
+
+    public void editTraineeSubmit(View view) {
+
+    }
+
+    public void cancelEditTrainee(View view) {
+        enterLeopard.setVisibility(View.VISIBLE);
+        editExistingTrainee.setVisibility(View.INVISIBLE);
+    }
+
+    public void enterLeopardHome(View view) {
+    }
+
+
+
+
+
+    public  void makeToast(String message){
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
+
+
 }

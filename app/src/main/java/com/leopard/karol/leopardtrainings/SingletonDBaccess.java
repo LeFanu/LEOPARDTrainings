@@ -61,8 +61,8 @@ public class SingletonDBaccess implements Serializable{
         return instance;
     }
 
+
     private transient String dbFilename =  "users.bin";
-    //File dbFileSaved = new File(dbFilename);
     private transient  FileOutputStream serializerOut;
     private transient FileInputStream serializerIn;
     private transient ObjectInputStream inputSerializer;
@@ -86,37 +86,43 @@ public class SingletonDBaccess implements Serializable{
             }
             inputSerializer.close();
             serializerIn.close();
-            Log.i("Karol", "File loaded!");
+            //Log.i("Karol", "File loaded!");
         } catch (IOException e) {
             e.printStackTrace();
             Log.i("Karol", "Loading error is " + e.toString());
         }
 
-        Log.i("Karol", "I'm reading singleton db. trainee length is " + trainees.toString());
         //at the startup we populate the list of the names
         for (Trainee trainee: trainees) {
             traineesNames.add(trainee.getName());
-            Log.i("Karol", "I'm inside trainee names. Name is:  " + trainee.getName());
         }
     }
 
     public void saveFiles(Context context){
         try {
             serializerOut = context.openFileOutput(dbFilename, Context.MODE_PRIVATE);
-
             outputSerializer = new ObjectOutputStream(serializerOut);
             outputSerializer.writeObject(trainees);
             outputSerializer.close();
             serializerOut.close();
-            Log.i("Karol", "File saved!");
-
+           // Log.i("Karol", "File saved!");
         } catch (IOException e) {
             e.printStackTrace();
             Log.i("Karol", "Saving error is " + e.toString());
         }
-
     }
 
-
+    public void removeTrainee(String name){
+        ///Log.i("Karol", "Trainees are " + trainees.size());
+        //Log.i("Karol", "Name is " + name);
+        for (Trainee trainee:trainees){
+            if (trainee.getName().contentEquals(name)){
+                trainees.remove(trainee);
+                //Log.i("Karol", "trainee " + name + " removed");
+                //Log.i("Karol", "Trainees are " + trainees.size());
+                break;
+            }
+        }
+    }
 
 }
