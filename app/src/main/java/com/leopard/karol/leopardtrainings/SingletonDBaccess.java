@@ -27,16 +27,20 @@ import java.util.ArrayList;
  *
  * Design Patterns Used:
  * I used Singleton Pattern for this logger class. We do not need more than one object to save and load our data
+ * Oce it's created we use the same object as our reference variable checks if the constructor was used previously
  *
  * Last Update: 08/03/2017
  */
 
 public class SingletonDBaccess implements Serializable{
 
+    private static final long serialVersionUID = 666L;
+
+    //instance fields with their getters and setters
     private ArrayList<Trainee> trainees = new ArrayList<Trainee>();
-    public ArrayList<Trainee> getTrainees() {
+    /*public ArrayList<Trainee> getTrainees() {
         return trainees;
-    }
+    }*/
     public void setTrainees(Trainee trainee) {
         this.trainees.add(trainee);
     }
@@ -45,11 +49,22 @@ public class SingletonDBaccess implements Serializable{
     public ArrayList<String> getTraineesNames() {
         return traineesNames;
     }
-    public void setTraineesNames(ArrayList<String> traineesNames) {
+   /* public void setTraineesNames(ArrayList<String> traineesNames) {
         this.traineesNames = traineesNames;
+    }*/
+
+    private String[] mobilizationAreas = {"A1 - Neck", "A2 - Posterior Shoulder",
+            "A3 - Anterior Shoulder ", "A4 - Arms", "A5  - Trunk","A6 - Posterior High Chain",
+            "A7 - Anterior High Chain", "A8 - Medial Chain", "A9 - Posterior Chain", "A10 - Knee",
+            "A11 - Medial and Anterior Shin", "A12 - Calf", "A13 - Ankle and Plantar Surface"};
+    public String[] getMobilizationAreas() {
+        return mobilizationAreas;
+    }
+    public void setMobilizationAreas(String[] mobilizationAreas) {
+        this.mobilizationAreas = mobilizationAreas;
     }
 
-
+   //static reference for the Singleton Pattern purpose and private constructor
     private static SingletonDBaccess instance;
     private  SingletonDBaccess() {
     }
@@ -62,6 +77,7 @@ public class SingletonDBaccess implements Serializable{
     }
 
 
+    //variables for serializing data
     private transient String dbFilename =  "users.bin";
     private transient  FileOutputStream serializerOut;
     private transient FileInputStream serializerIn;
@@ -70,7 +86,7 @@ public class SingletonDBaccess implements Serializable{
 
 
 
-
+    //methods for saving and loading data and using Trainees throghout the application
     public void readDB_onStartup(Context context){
         try {
             serializerIn = context.openFileInput(dbFilename);
@@ -92,12 +108,13 @@ public class SingletonDBaccess implements Serializable{
             Log.i("Karol", "Loading error is " + e.toString());
         }
 
-        //at the startup we populate the list of the names
+        //Once the data is loaded at the startup we populate the list of the names of Trainees
         for (Trainee trainee: trainees) {
             traineesNames.add(trainee.getName());
         }
     }
 
+    //this method is used after every successful operation performed on the Trainee
     public void saveFiles(Context context){
         try {
             serializerOut = context.openFileOutput(dbFilename, Context.MODE_PRIVATE);
@@ -112,17 +129,20 @@ public class SingletonDBaccess implements Serializable{
         }
     }
 
+    //this method removes the Trainee and uses another method to find it
     public void removeTrainee(String name){
-        ///Log.i("Karol", "Trainees are " + trainees.size());
-        //Log.i("Karol", "Name is " + name);
+        Trainee toDelete = findTrainee(name);
+        trainees.remove(toDelete);
+    }
+
+    //this method finds the trainee by its name
+    public Trainee findTrainee(String name){
         for (Trainee trainee:trainees){
             if (trainee.getName().contentEquals(name)){
-                trainees.remove(trainee);
-                //Log.i("Karol", "trainee " + name + " removed");
-                //Log.i("Karol", "Trainees are " + trainees.size());
-                break;
+                return trainee;
             }
         }
+        return null;
     }
 
 }

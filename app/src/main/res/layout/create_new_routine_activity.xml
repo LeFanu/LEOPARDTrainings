@@ -1,0 +1,478 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:padding="16dp"
+    tools:context="com.leopard.karol.leopardtrainings.CreateNewRoutine">
+
+        <!--Title and main content-->
+        <TextView
+            android:id="@+id/createNewRoutineTitle"
+            style="@style/HeadingLeopard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:text="Create New Training"
+            android:textAlignment="center" />
+        <LinearLayout
+            android:id="@+id/commonDetails"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_below="@id/createNewRoutineTitle"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical"
+            >
+
+            <TextView
+                android:id="@+id/nameOfThePlan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="Name of your plan:" />
+            <EditText
+                android:id="@+id/enterPlanName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_marginBottom="10dp"
+                android:ems="10"
+                style="@style/LeopardEditTextBox"
+                android:inputType="textPersonName"
+                android:hint="Name for your training..." />
+            <TextView
+                android:id="@+id/numberOfRepeats"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_marginBottom="10dp"
+                android:text="Number of repeats:" />
+            <EditText
+                android:id="@+id/enterNumberOfRoutines"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:ems="2"
+                style="@style/LeopardEditTextBox"
+                android:inputType="numberSigned"
+                android:textAlignment="textEnd"
+                android:hint="00" />
+        </LinearLayout>
+
+        <!--Trainings-->
+        <GridLayout
+            android:id="@+id/trainingLayout1"
+            android:layout_below="@id/commonDetails"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:background="@color/black"
+            >
+
+            <TextView
+                android:id="@+id/training1"
+                android:padding="10dp"
+                android:background="@color/background"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_gravity="fill"
+                android:layout_column="0"
+                android:layout_row="0"
+                android:text="Training 1" />
+                />
+
+            <!--Select Area-->
+            <TextView
+                android:id="@+id/selectArea1"
+                android:padding="10dp"
+                android:background="@color/background"
+                android:layout_width="wrap_content"
+                android:layout_gravity="fill"
+                android:layout_marginBottom="10dp"
+                android:layout_column="0"
+                android:layout_row="1"
+
+                android:text="Select Area:" />
+            />
+            <Spinner
+                android:id="@+id/areaTraining1"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="15dp"
+                android:layout_marginLeft="5dp"
+                android:layout_width="200dp"
+                android:layout_gravity="fill"
+                android:layout_column="3"
+                android:layout_row="1"
+                />
+
+            <!--Select Mobilization-->
+            <TextView
+                android:id="@+id/selectMobilization1"
+                android:padding="10dp"
+                android:background="@color/background"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="10dp"
+                android:layout_column="0"
+                android:layout_columnSpan="2"
+                android:layout_row="2"
+                android:gravity="fill"
+                android:text="Select Mobilization:" />
+            />
+            <Spinner
+                android:id="@+id/mobilizationTraining1"
+                android:layout_margin="5dp"
+                android:layout_width="200dp"
+                android:layout_gravity="fill"
+                android:layout_column="3"
+                android:layout_row="2"
+                />
+
+            <!--Select Time-->
+            <TextView
+                android:id="@+id/selectTime1"
+                android:padding="10dp"
+                android:background="@color/background"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="10dp"
+                android:layout_column="0"
+                android:layout_columnSpan="2"
+                android:layout_row="3"
+                android:gravity="fill"
+                android:text="Select Time:" />
+            />
+            <Spinner
+                android:id="@+id/timeTraining1"
+                android:layout_margin="5dp"
+                android:layout_width="200dp"
+                android:layout_gravity="fill"
+                android:layout_column="3"
+                android:layout_row="3"
+
+                />
+
+        </GridLayout>
+
+        <GridLayout
+            android:id="@+id/trainingLayout2"
+            android:layout_below="@id/trainingLayout1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:padding="5dp"
+            android:background="@color/black"
+            >
+
+            <TextView
+                android:id="@+id/training2"
+                android:padding="10dp"
+                android:background="@color/background"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_gravity="fill"
+                android:layout_column="0"
+                android:layout_row="0"
+                android:text="Training 2" />
+            />
+            <!--Select Area-->
+            <TextView
+                android:id="@+id/selectArea2"
+                android:padding="10dp"
+                android:background="@color/background"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_column="0"
+                android:layout_row="1"
+                android:gravity="fill"
+                android:text="Select Area:" />
+            />
+            <Spinner
+                android:id="@+id/areaTraining2"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="15dp"
+                android:layout_marginLeft="5dp"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:gravity="fill"
+                android:layout_column="3"
+                android:layout_row="1"
+                />
+            <!--Select Mobilization-->
+            <TextView
+                android:id="@+id/selectMobilization2"
+                android:padding="10dp"
+                android:background="@color/background"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="10dp"
+                android:layout_column="0"
+                android:layout_columnSpan="2"
+                android:layout_row="2"
+                android:gravity="fill"
+                android:text="Select Mobilization:" />
+            />
+            <Spinner
+                android:id="@+id/mobilizationTraining2"
+                android:layout_margin="5dp"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:gravity="fill"
+                android:layout_column="3"
+                android:layout_row="2"
+                />
+            <!--Select Time-->
+            <TextView
+                android:id="@+id/selectTime2"
+                android:padding="10dp"
+                android:background="@color/background"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="10dp"
+                android:layout_column="0"
+                android:layout_columnSpan="2"
+                android:layout_row="3"
+                android:gravity="fill"
+                android:text="Select Time:" />
+            />
+            <Spinner
+                android:id="@+id/timeTraining2"
+                android:layout_margin="5dp"
+                android:layout_width="200dp"
+                android:layout_gravity="fill"
+                android:layout_column="3"
+                android:layout_row="3"
+                />
+        </GridLayout>
+
+        <GridLayout
+            android:id="@+id/trainingLayout3"
+            android:layout_below="@id/trainingLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:padding="5dp"
+            android:background="@color/black"
+            >
+            <TextView
+                android:id="@+id/training3"
+                android:padding="10dp"
+                android:background="@color/background"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_gravity="fill"
+                android:layout_column="0"
+                android:layout_row="0"
+                android:text="Training 3" />
+            />
+            <!--Select Area-->
+            <TextView
+                android:id="@+id/selectArea3"
+                android:padding="10dp"
+                android:background="@color/background"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_column="0"
+                android:layout_row="1"
+                android:gravity="fill"
+                android:text="Select Area:" />
+            />
+            <Spinner
+                android:id="@+id/areaTraining3"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="15dp"
+                android:layout_marginLeft="5dp"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:gravity="fill"
+                android:layout_column="3"
+                android:layout_row="1"
+                />
+            <!--Select Mobilization-->
+            <TextView
+                android:id="@+id/selectMobilization3"
+                android:padding="10dp"
+                android:background="@color/background"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="10dp"
+                android:layout_column="0"
+                android:layout_columnSpan="2"
+                android:layout_row="2"
+                android:gravity="fill"
+                android:text="Select Mobilization:" />
+            />
+            <Spinner
+                android:id="@+id/mobilizationTraining3"
+                android:layout_margin="5dp"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:gravity="fill"
+                android:layout_column="3"
+                android:layout_row="2"
+                />
+            <!--Select Time-->
+            <TextView
+                android:id="@+id/selectTime3"
+                android:padding="10dp"
+                android:background="@color/background"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="10dp"
+                android:layout_column="0"
+                android:layout_columnSpan="2"
+                android:layout_row="3"
+                android:gravity="fill"
+                android:text="Select Time:" />
+            />
+            <Spinner
+                android:id="@+id/timeTraining3"
+                android:layout_margin="5dp"
+                android:layout_width="200dp"
+                android:layout_gravity="fill"
+                android:layout_column="3"
+                android:layout_row="3"
+                />
+        </GridLayout>
+
+        <GridLayout
+            android:id="@+id/trainingLayout4"
+            android:layout_below="@id/trainingLayout3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:padding="5dp"
+            android:background="@color/black"
+            >
+            <TextView
+                android:id="@+id/training4"
+                android:padding="10dp"
+                android:background="@color/background"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_gravity="fill"
+                android:layout_column="0"
+                android:layout_row="0"
+                android:text="Training 4" />
+            />
+            <!--Select Area-->
+            <TextView
+                android:id="@+id/selectArea4"
+                android:padding="10dp"
+                android:background="@color/background"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_column="0"
+                android:layout_row="1"
+                android:gravity="fill"
+                android:text="Select Area:" />
+            />
+            <Spinner
+                android:id="@+id/areaTraining4"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="15dp"
+                android:layout_marginLeft="5dp"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:gravity="fill"
+                android:layout_column="3"
+                android:layout_row="1"
+                />
+
+            <!--Select Mobilization-->
+            <TextView
+                android:id="@+id/selectMobilization4"
+                android:padding="10dp"
+                android:background="@color/background"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="10dp"
+                android:layout_column="0"
+                android:layout_columnSpan="2"
+                android:layout_row="2"
+                android:gravity="fill"
+                android:text="Select Mobilization:" />
+            />
+            <Spinner
+                android:id="@+id/mobilizationTraining4"
+                android:layout_margin="5dp"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:gravity="fill"
+                android:layout_column="3"
+                android:layout_row="2"
+                />
+            <!--Select Time-->
+            <TextView
+                android:id="@+id/selectTime4"
+                android:padding="10dp"
+                android:background="@color/background"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="10dp"
+                android:layout_column="0"
+                android:layout_columnSpan="2"
+                android:layout_row="3"
+                android:gravity="fill"
+                android:text="Select Time:" />
+            />
+            <Spinner
+                android:id="@+id/timeTraining4"
+                android:layout_margin="5dp"
+                android:layout_width="200dp"
+                android:layout_gravity="fill"
+                android:layout_column="3"
+                android:layout_row="3"
+                />
+        </GridLayout>
+
+
+        <!--Confirming set routine and continue using app-->
+        <Button
+            android:id="@+id/submitNewRoutine"
+            android:layout_width="wrap_content"
+            android:text="Submit Routine"
+            android:textSize="20sp"
+            android:layout_height="50dp"
+            style="@style/LeopardButton"
+            android:layout_below="@+id/trainingLayout4"
+            android:layout_marginTop="30dp"
+            android:layout_alignParentStart="true"
+            android:onClick="submitNewRoutine"/>
+
+        <Button
+            android:id="@+id/cancelNewRoutine"
+            android:layout_width="wrap_content"
+            android:text="Cancel"
+            android:textSize="15sp"
+            android:layout_height="40dp"
+            style="@style/LeopardButton"
+            android:layout_below="@+id/trainingLayout4"
+            android:layout_marginTop="30dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignBottom="@id/submitNewRoutine"
+            android:onClick="cancelNewRoutine"/>
+
+    </RelativeLayout>
+</ScrollView>

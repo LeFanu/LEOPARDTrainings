@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">LEOPARD Trainings</string>
     <string name="delete_selected_user">Are you sure you want to delete selected user?</string>
+    <string name="short_description">\t\t\t\tPellentesque iaculis, augue eu bibendum posuere, erat orci vestibulum mi, id tempor augue enim ut sapien. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Mauris scelerisque orci sed sapien vulputate aliquam. Sed volutpat maximus libero eget porttitor. Ut a massa porta, dapibus justo sed, varius sapien.</string>
+    <string name="mobilitywod_com">https://www.mobilitywod.com/" </string>
+    <string name="YT_sanfranciscocrossfit">https://www.youtube.com/user/sanfranciscocrossfit</string>
+    <string name="goodreads_supple_leopard">https://www.goodreads.com/book/show/13594266-becoming-a-supple-leopard</string>
 
 
     <string-array name="planets_array">

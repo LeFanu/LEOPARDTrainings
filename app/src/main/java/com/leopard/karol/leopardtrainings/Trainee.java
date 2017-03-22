@@ -1,6 +1,7 @@
 package com.leopard.karol.leopardtrainings;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 /** Author: Karol Pasierb - Software Engineering - 40270305
  * Created by Karol on 2017-03-05.
@@ -22,7 +23,7 @@ import java.io.Serializable;
 
 public class Trainee implements Serializable {
 
-    //instance fields for user
+    //instance fields with getters and setters
     private String name;
     public String getName() {
         return name;
@@ -63,6 +64,10 @@ public class Trainee implements Serializable {
         this.currentRoutineCompleted = currentRoutineCompleted;
     }
 
+    private ArrayList<TrainingRoutinePlan> routines = new ArrayList<TrainingRoutinePlan>();
+    public ArrayList<TrainingRoutinePlan> getRoutines() {
+        return routines;
+    }
 
 
     //constructor
@@ -70,5 +75,8 @@ public class Trainee implements Serializable {
 
     }
 
+    public void addTrainingRoutine (TrainingRoutinePlan routine) {
+        routines.add(routine);
+    }
 
 }
